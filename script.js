@@ -1,30 +1,130 @@
 const servers = [
-    {
-      id: 1,
-      name: 'Servidor 1',
-      serverImage: 'img/teste1.jpg',
-      channels: [
         {
           id: 1,
-          name: '# geral',
+          name: 'Design para Web',
+          serverImage: 'img/teste1.jpg',
+          channels: [
+            {
+              id: 1,
+              name: '# 📱 geral',
+              messages: [
+                {
+                  author: 'Sistema',
+                  text: 'Bem-vindo ao servidor de Análise de Design! Aqui você encontrará uma análise detalhada sobre o redesign de uma rede social.'
+                },
+                  {
+                    author: 'Sistema',
+                    text: 'Bem-vindo ao servidor! Confira o código em https://github.com/AkuBaxi/compensacao_ausencia/tree/main/designWeb'
+                  }                  
+              ]
+            },
+            {
+              id: 2,
+              name: '# 💪 pontos-fortes',
+              messages: [
+                {
+                  author: 'Sistema',
+                  text: '📌 Navegação Intuitiva\n• Menu principal de fácil acesso\n• Ícones reconhecíveis universalmente\n• Hierarquia clara de informações'
+                },
+                {
+                  author: 'Sistema',
+                  text: '📌 Engajamento do Usuário\n• Sistema de likes e comentários\n• Stories para conteúdo efêmero\n• Feed infinito para maior retenção'
+                },
+                {
+                  author: 'Sistema',
+                  text: '📌 Performance\n• Carregamento rápido de imagens\n• Cache eficiente\n• Atualizações em tempo real'
+                }
+              ]
+            },
+            {
+              id: 3,
+              name: '# 🚫 pontos-fracos',
+              messages: [
+                {
+                  author: 'Sistema',
+                  text: '📌 Sobrecarga Visual\n• Excesso de informações na tela\n• Publicidade muito invasiva\n• Interface às vezes confusa em certas seções'
+                },
+                {
+                  author: 'Sistema',
+                  text: '📌 Problemas de Acessibilidade\n• Contraste insuficiente\n• Textos pequenos\n• Falta de suporte para leitores de tela'
+                },
+                {
+                  author: 'Sistema',
+                  text: '📌 Limitações Técnicas\n• Consumo alto de bateria\n• Uso excessivo de dados móveis\n• Performance inconsistente em dispositivos mais antigos'
+                }
+              ]
+            },
+            {
+              id: 4,
+          name: '# 🎨 style-guide',
           messages: [
             {
-              author: 'User 1',
-              text: 'Olá, como posso ajudar?'
+              author: ' Sistema de Cores',
+              text: 'img:img_design/rootCores.png'
             },
             {
-              author: 'User 2',
-              text: 'Tudo bem, obrigado por perguntar!'
+              author: 'Tipografia',
+              text: 'img:img_design/rootTipografia.png'
             },
             {
-              author: 'User 3',
-              text: 'Que bom ver você por aqui.'
+              author: 'Espaçamento e Layout',
+              text: 'img:img_design/rootLayout.png'
+            },
+            {
+              author: 'Grid System',
+              text: 'img:img_design/gridSystem.png'
+            },
+            {
+              author: ' Animações e Transições',
+              text: 'img:img_design/rootAnimation.png'
+            },
+            {
+              author: 'Componentes Base',
+              text: 'img:img_design/rootBase.png'
+            }
+
+          ]
+            },
+            {
+              id: 5,
+              name: '# 📈 melhorias',
+              messages: [
+                {
+                  author: 'Sistema',
+                  text: '📌 Design\n• Implementar Dark Mode nativo\n• Melhorar hierarquia visual\n• Criar mais espaço em branco\n• Adicionar micro-interações'
+                },
+                {
+                  author: 'Sistema',
+                  text: '📌 Usabilidade\n• Simplificar a navegação\n• Melhorar a gestão de notificações\n• Criar atalhos personalizáveis\n• Otimizar para uso com uma mão'
+                },
+                {
+                  author: 'Sistema',
+                  text: '📌 Acessibilidade \n • Aumentar contraste\n• Implementar suporte ARIA\n• Melhorar navegação por teclado\n• Adicionar descrições em imagens'
+                }
+              ]
+            },
+            {
+              id: 6,
+              name: '# 👥 público-alvo',
+              messages: [
+                {
+                  author: 'Sistema',
+                  text: '📌 Demografia Principal\n• Idade: 18-35 anos\n• Familiaridade com tecnologia: Alta\n• Dispositivo principal: Smartphone\n• Tempo médio de uso: 2-3 horas/dia'
+                },
+                {
+                  author: 'Sistema',
+                  text: '📌 Necessidades do Usuário\n• Compartilhamento rápido de conteúdo\n• Interação social contínua\n• Descoberta de novo conteúdo\n• Personalização da experiência'
+                }
+              ]
             }
           ]
         },
+       
+       
         {
           id: 2,
           name: '# jogos',
+          serverImage: 'img/teste1.jpg',
           messages: [
             {
               author: 'User 1',
@@ -49,8 +149,6 @@ const servers = [
               text: 'Eu tenho uma excelente, posso compartilhar.'
             }
           ]
-        }
-      ]
     },
     {
       id: 2,
@@ -90,7 +188,7 @@ const servers = [
     {
       id: 3,
       name: 'Servidor 3',
-      serverImage: 'img/teste3.jpg',
+      serverImage: 'img/teste1.jpg',
       channels: [
         {
           id: 1,
@@ -152,34 +250,77 @@ const servers = [
     const channelName = document.getElementById('channelName');
     channelName.textContent = `${servers.find(server => server.id === currentServerId).name} - ${channel.name}`;
     currentChannelId = channel.id;
-  
-    channel.messages.forEach(message => {
-      const messageItem = document.createElement('li');
-      messageItem.classList.add('message');
-  
-      const avatarElement = document.createElement('div');
-      avatarElement.classList.add('message-avatar');
-      const avatarImg = document.createElement('img');
-      avatarImg.src = 'https://via.placeholder.com/30';
-      avatarImg.alt = message.author;
-      avatarElement.appendChild(avatarImg);
-  
-      const contentElement = document.createElement('div');
-      contentElement.classList.add('message-content');
-      const authorElement = document.createElement('div');
-      authorElement.classList.add('message-author');
-      authorElement.textContent = message.author;
-      const textElement = document.createElement('div');
-      textElement.classList.add('message-text');
-      textElement.textContent = message.text;
-      contentElement.appendChild(authorElement);
-      contentElement.appendChild(textElement);
-  
-      messageItem.appendChild(avatarElement);
-      messageItem.appendChild(contentElement);
-      messageList.appendChild(messageItem);
+
+    const imageModal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const closeModal = document.getElementById('closeModal');
+
+    // Fechar modal
+    closeModal.addEventListener('click', () => {
+        imageModal.classList.remove('active');
     });
-  }
+
+    channel.messages.forEach(message => {
+        const messageItem = document.createElement('li');
+        messageItem.classList.add('message');
+
+        const avatarElement = document.createElement('div');
+        avatarElement.classList.add('message-avatar');
+        const avatarImg = document.createElement('img');
+
+        const contentElement = document.createElement('div');
+        contentElement.classList.add('message-content');
+        const authorElement = document.createElement('div');
+        authorElement.classList.add('message-author');
+        authorElement.textContent = message.author;
+
+        const textElement = document.createElement('div');
+        textElement.classList.add('message-text');
+
+        if (message.text.includes('http://') || message.text.includes('https://')) {
+            const parts = message.text.split(/\s+/); 
+            parts.forEach(part => {
+                if (part.startsWith('http://') || part.startsWith('https://')) {
+                    const link = document.createElement('a');
+                    link.href = part;
+                    link.textContent = part;
+                    link.target = '_blank'; 
+                    link.style.color = 'white';
+                    textElement.appendChild(link);
+                } else {
+                    const span = document.createElement('span');
+                    span.textContent = part + ' ';
+                    textElement.appendChild(span);
+                }
+            });
+        } 
+        else if (currentServerId === 1 && channel.id === 4 && message.text.startsWith('img:')) {
+            const imgSrc = message.text.replace('img:', '').trim();
+            const imgElement = document.createElement('img');
+            imgElement.src = imgSrc;
+            imgElement.alt = 'Imagem do usuário';
+            imgElement.style.maxWidth = '100%';
+
+            imgElement.addEventListener('click', () => {
+                modalImage.src = imgSrc;
+                imageModal.classList.add('active');
+            });
+
+            textElement.appendChild(imgElement);
+        } else {
+            textElement.textContent = message.text; 
+        }
+
+        contentElement.appendChild(authorElement);
+        contentElement.appendChild(textElement);
+
+        messageItem.appendChild(avatarElement);
+        messageItem.appendChild(contentElement);
+        messageList.appendChild(messageItem);
+    });
+}
+
+  
   
   function navigateToServer(serverId) {
     currentServerId = serverId;
