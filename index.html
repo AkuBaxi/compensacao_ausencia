@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Compensação de Ausência</title>
+
+</head>
+<body>
+  <div id="app">
+    <div id="server-sidebar">
+        <div class="server-icon" data-server-id="1">
+            <img src="img/iconteste1.jpg" alt="Server 1">
+        </div>
+        <div class="server-icon" data-server-id="2">
+          <img src="img/iconteste2.jpg" alt="Server ">
+        </div>
+        <div class="server-icon" data-server-id="3">
+            <img src="img/iconteste3.jpg" alt="Server 3">
+        </div>
+    </div>
+    <div id="main-sidebar">
+        <div id="server-info">
+            <div class="server-image">
+                <img alt="Server 1">
+            </div>
+            <h2 class="server-name" id="serverName">Servidor 1</h2>
+        </div>
+        <div id="channel-list">
+            <div class="channel-header">
+                <h2>Canais</h2>
+            </div>
+            <ul id="channelList">
+                <li class="channel-item" data-channel-id="1" data-channel-name="# geral"># geral</li>
+                <li class="channel-item" data-channel-id="2" data-channel-name="# jogos"># jogos</li>
+                <li class="channel-item" data-channel-id="3" data-channel-name="# música"># música</li>
+            </ul>
+        </div>
+    </div>
+    <div id="main-content">
+        <div id="chat-header">
+            <h2 id="channelName">Servidor 1 - # geral</h2>
+        </div>
+        <div id="chat-area" class="chat-area-expanded">
+            <ul id="messageList">
+            </ul>
+        </div>
+        <div id="chat-input">
+            <input type="text" id="messageInput" placeholder="Digite sua mensagem...">
+            <button id="sendButton">Enviar</button>
+        </div>
+    </div>
+    <div id="user-menu-sidebar" class="hidden">
+        <div class="user-list">
+            <div class="user-item">
+                <div class="user-avatar">
+                    <img src="img/iconteste3.jpg" alt="User 1">
+                </div>
+                <div class="user-name">User 1</div>
+            </div>
+            <div class="user-item">
+                <div class="user-avatar">
+                    <img src="img/iconteste3.jpg" alt="User 2">
+                </div>
+                <div class="user-name">User 2</div>
+            </div>
+            <div class="user-item">
+                <div class="user-avatar">
+                    <img src="img/iconteste3.jpg" alt="User 3">
+                </div>
+                <div class="user-name">User 3</div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <div id="imageModal" class="modal hidden">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+      <img id="modalImage" src="" alt="Imagem ampliada">
+    </div>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
