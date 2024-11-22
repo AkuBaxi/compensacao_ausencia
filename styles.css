@@ -174,6 +174,15 @@ body {
     object-fit: cover;
 }
 
+.user-avatar img,
+.server-icon img {
+    width: 50px; /* Tamanho ajustável */
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover; /* Garante proporções corretas */
+    overflow: hidden;
+}
+
 .user-name {
     color: white;
 }
@@ -234,6 +243,7 @@ body {
     padding: 10px;
     border-radius: 4px;
     color: white;
+    margin-right: 60px;
 }
 
 .message-author {
@@ -273,3 +283,47 @@ body {
 .hidden {
     display: none;
 }
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  .modal-content {
+    position: relative;
+  }
+  
+  .modal img {
+    max-width: 90%;
+    max-height: 90%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    
+  }
+  
+  .modal .close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .modal.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
