@@ -119,10 +119,6 @@ const servers = [
             }
           ]
         },
-      
-
-
-
     {
       id: 2,
       name: 'Empreendedorismo Tecnologico',
@@ -205,16 +201,8 @@ const servers = [
 
                 ]
               }
-
-
-
-
       ]
     },
-
-
-
-
     {
       id: 3,
       name: 'Ciência de Dados',
@@ -285,8 +273,6 @@ const servers = [
         
       ]
     },
-
-
     {
       id: 4,
       name: 'Ética e Direito Digital',
