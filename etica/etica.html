@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundo Digital: Ética e Direitos</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a4b84;
+            --secondary-color: #2ecc71;
+            --accent-color: #e74c3c;
+            --text-color: #2c3e50;
+            --background-color: #f0f4f8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #3498db);
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 15px 0;
+        }
+
+        nav ul li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .section {
+            background-color: white;
+            margin: 30px 0;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tema {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .interactive-card {
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        .interactive-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+        }
+
+        .interactive-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .interactive-card h3 {
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+
+        #quiz {
+            text-align: center;
+        }
+
+        .quiz-question {
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        #recursos ul {
+            list-style-type: none;
+        }
+
+        #recursos ul li {
+            background-color: #f1f1f1;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        #recursos ul li:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateX(10px);
+        }
+        .campaign-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .campaign-card {
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .campaign-card:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 700px;
+            max-height: 80%;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        .modal h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Mundo Digital: Ética e Direitos</h1>
+            <p>Navegando com Segurança e Responsabilidade</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#temas">Temas</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+            <li><a href="#recursos">Recursos</a></li>
+            <li><a href="#campanha">Campanha</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <section id="temas" class="section">
+            <h2>Temas de Segurança Digital</h2>
+            <div class="tema">
+                <div class="interactive-card">
+                    <i class="fas fa-user-shield"></i>
+                    <h3>Redes Sociais e Privacidade</h3>
+                    <p>Proteja seus dados pessoais no ambiente online</p>
+                </div>
+                <div class="interactive-card">
+                    <i class="fas fa-bullhorn"></i>
+                    <h3>Cyberbullying</h3>
+                    <p>Estratégias para reconhecer e combater o assédio digital</p>
+                </div>
+                <div class="interactive-card">
+                    <i class="fas fa-newspaper"></i>
+                    <h3>Fake News</h3>
+                    <p>Técnicas para identificar e combater a desinformação</p>
+                </div>
+                <div class="interactive-card">
+                    <i class="fas fa-digital-tachograph"></i>
+                    <h3>Direitos Digitais</h3>
+                    <p>Conheça e exerça seus direitos no mundo digital</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz" class="section">
+            <h2>Quiz de Segurança Digital</h2>
+            <div id="quiz-container">
+                <div class="quiz-question" id="question1">
+                    <h3>O que é um cookie?</h3>
+                    <button onclick="checkAnswer(1, 'a')">Arquivo de texto que sites salvam no seu computador</button>
+                    <button onclick="checkAnswer(1, 'b')">Um tipo de biscoito</button>
+                    <button onclick="checkAnswer(1, 'c')">Um programa antivírus</button>
+                </div>
+                
+                <div class="quiz-question" id="question2" style="display:none;">
+                    <h3>O que caracteriza uma Fake News?</h3>
+                    <button onclick="checkAnswer(2, 'a')">Notícia verificada e verdadeira</button>
+                    <button onclick="checkAnswer(2, 'b')">Informação falsa que parece verdadeira</button>
+                    <button onclick="checkAnswer(2, 'c')">Reportagem de um jornal tradicional</button>
+                </div>
+                
+                <div class="quiz-question" id="question3" style="display:none;">
+                    <h3>Como se proteger de Cyberbullying?</h3>
+                    <button onclick="checkAnswer(3, 'a')">Ignorar completamente</button>
+                    <button onclick="checkAnswer(3, 'b')">Documentar e denunciar</button>
+                    <button onclick="checkAnswer(3, 'c')">Responder com agressividade</button>
+                </div>
+            </div>
+            <div id="result"></div>
+            <div id="quiz-navigation" style="text-align:center; margin-top:20px;">
+                <button onclick="nextQuestion()">Próxima Pergunta</button>
+            </div>
+        </section>
+
+        <section id="recursos" class="section">
+            <h2>Recursos de Apoio</h2>
+            <ul>
+                <li>Marco Civil da Internet</li>
+                <li>Lei Geral de Proteção de Dados (LGPD)</li>
+                <li>Central de Ajuda contra Cyberbullying</li>
+                <li>Guias de Segurança Digital</li>
+                <li>Cartilha de Segurança para Internet</li>
+                <li>Núcleo de Combate aos Cibercrimes</li>
+                <li>Observatório de Segurança Digital</li>
+            </ul>
+        </section>
+
+        <section id="campanha" class="section">
+            <h2>Campanha de Conscientização</h2>
+            <div class="campaign-section">
+                <div class="campaign-card">
+                    <i class="fas fa-user-shield"></i>
+                    <h3>Segurança Digital para Adolescentes</h3>
+                    <p>Proteja-se no mundo online</p>
+                </div>
+                <div class="campaign-card">
+                    <i class="fas fa-balance-scale"></i>
+                    <h3>Uso Ético da Tecnologia</h3>
+                    <p>Construa uma cidadania digital</p>
+                </div>
+                <div class="campaign-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>Saúde Digital</h3>
+                    <p>Equilíbrio e bem-estar</p>
+                </div>
+                <div class="campaign-card">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Pontos Extras</h3>
+                    <p>Casos reais e soluções inovadoras</p>
+                </div>
+                <div id="modal-redes-sociais" class="modal">
+                    <div class="modal-content">
+                        <span class="close-modal" onclick="closeModal('modal-redes-sociais')">&times;</span>
+                        <h2>Redes Sociais e Privacidade</h2>
+                        <p>As redes sociais são espaços onde compartilhamos nossa vida pessoal, mas é fundamental estar atento à privacidade:</p>
+                        <ul>
+                            <li>Revise suas configurações de privacidade regularmente</li>
+                            <li>Seja cuidadoso ao aceitar solicitações de amizade</li>
+                            <li>Evite compartilhar informações pessoais sensíveis</li>
+                            <li>Use senhas fortes e autenticação em dois fatores</li>
+                        </ul>
+                        <p>Lembre-se: o que você posta na internet pode permanecer para sempre!</p>
+                    </div>
+                </div>
+            
+                <div id="modal-cyberbullying" class="modal">
+                    <div class="modal-content">
+                        <span class="close-modal" onclick="closeModal('modal-cyberbullying')">&times;</span>
+                        <h2>Cyberbullying</h2>
+                        <p>Cyberbullying é qualquer forma de assédio ou intimidação através de meios digitais. Combata-o:</p>
+                        <ul>
+                            <li>Não reaja agressivamente ao assediador</li>
+                            <li>Documente as mensagens ou posts ofensivos</li>
+                            <li>Denuncie em plataformas e, se necessário, às autoridades</li>
+                            <li>Busque apoio de amigos, família ou profissionais</li>
+                        </ul>
+                        <p>Sua saúde mental é importante. Não sofra em silêncio!</p>
+                    </div>
+                </div>
+            
+                <div id="modal-fake-news" class="modal">
+                    <div class="modal-content">
+                        <span class="close-modal" onclick="closeModal('modal-fake-news')">&times;</span>
+                        <h2>Fake News</h2>
+                        <p>Fake news são informações falsas que se parecem verdadeiras. Aprenda a identificá-las:</p>
+                        <ul>
+                            <li>Verifique a fonte da informação</li>
+                            <li>Consulte sites de fact-checking</li>
+                            <li>Desconfie de títulos sensacionalistas</li>
+                            <li>Não compartilhe sem verificar a veracidade</li>
+                        </ul>
+                        <p>Seja um consumidor crítico de informações!</p>
+                    </div>
+                </div>
+            
+                <div id="modal-direitos-digitais" class="modal">
+                    <div class="modal-content">
+                        <span class="close-modal" onclick="closeModal('modal-direitos-digitais')">&times;</span>
+                        <h2>Direitos Digitais</h2>
+                        <p>Seus direitos digitais são essenciais na era da informação:</p>
+                        <ul>
+                            <li>Proteção de dados pessoais (LGPD)</li>
+                            <li>Liberdade de expressão online</li>
+                            <li>Direito à desconexão</li>
+                            <li>Segurança contra discriminação digital</li>
+                        </ul>
+                        <p>Conheça seus direitos e saiba como exercê-los!</p>
+                    </div>
+                </div>
+            
+            </div>
+        </section>
+    </main>
+
+    <footer style="background-color: var(--primary-color); color: white; text-align: center; padding: 20px;">
+        <p>© 2024 Mundo Digital: Ética e Direitos</p>
+    </footer>
+    
+    <script>
+        let currentQuestion = 1;
+        const totalQuestions = 3;
+
+        function checkAnswer(questionNumber, selectedAnswer) {
+            const resultDiv = document.getElementById('result');
+            const resultMessages = {
+                1: {
+                    correct: {
+                        text: 'Resposta Correta! 🏆 Os cookies são pequenos arquivos de texto salvos pelo site no seu computador.',
+                        color: 'green'
+                    },
+                    incorrect: {
+                        text: 'Resposta Incorreta. Tente novamente! 🤔',
+                        color: 'red'
+                    }
+                },
+                2: {
+                    correct: {
+                        text: 'Resposta Correta! 🏆 Fake news é uma informação falsa que parece verdadeira.',
+                        color: 'green'
+                    },
+                    incorrect: {
+                        text: 'Resposta Incorreta. Tente novamente! 🤔',
+                        color: 'red'
+                    }
+                },
+                3: {
+                    correct: {
+                        text: 'Resposta Correta! 🏆 Documentar e denunciar é a melhor forma de combater o cyberbullying.',
+                        color: 'green'
+                    },
+                    incorrect: {
+                        text: 'Resposta Incorreta. Tente novamente! 🤔',
+                        color: 'red'
+                    }
+                }
+            };
+
+            const isCorrect = (questionNumber === 1 && selectedAnswer === 'a') ||
+                              (questionNumber === 2 && selectedAnswer === 'b') ||
+                              (questionNumber === 3 && selectedAnswer === 'b');
+
+            resultDiv.innerHTML = `<p style="color: ${isCorrect ? resultMessages[questionNumber].correct.color : resultMessages[questionNumber].incorrect.color}; font-weight: bold;">
+                ${isCorrect ? resultMessages[questionNumber].correct.text : resultMessages[questionNumber].incorrect.text}
+            </p>`;
+        }
+
+        function nextQuestion() {
+            document.getElementById(`question${currentQuestion}`).style.display = 'none';
+            
+            currentQuestion++;
+            if (currentQuestion > totalQuestions) {
+                currentQuestion = 1;
+            }
+            
+            document.getElementById(`question${currentQuestion}`).style.display = 'block';
+        }
+
+        document.querySelectorAll('.interactive-card').forEach(card => {
+    card.addEventListener('click', function() {
+        const cardTitle = this.querySelector('h3').textContent.trim().toLowerCase();
+        const modalMap = {
+            'redes sociais e privacidade': 'modal-redes-sociais',
+            'cyberbullying': 'modal-cyberbullying',
+            'fake news': 'modal-fake-news',
+            'direitos digitais': 'modal-direitos-digitais'
+        };
+        
+        const modalId = modalMap[cardTitle];
+        if (modalId) {
+            const targetModal = document.getElementById(modalId);
+            targetModal.style.display = 'flex';
+        }
+    });
+});
+
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+}
+
+// Closes modal when clicking outside
+window.addEventListener('click', function(event) {
+    if (event.target.classList.contains('modal')) {
+        event.target.style.display = 'none';
+    }
+});
+    </script>
+</body>
+</html>

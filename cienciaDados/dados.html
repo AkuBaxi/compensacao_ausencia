@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Avançado - Análise Musical Spotify</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="container mx-auto bg-white shadow-lg rounded-lg p-6">
+        <h1 class="text-3xl font-bold text-center mb-8 text-green-600">Dashboard Avançado de Análise Musical 2023</h1>
+        
+        <!-- Filtros Interativos Expandidos -->
+        <div class="mb-6 grid grid-cols-3 gap-4">
+            <select id="generoFilter" class="p-2 border rounded">
+                <option value="">Todos Gêneros</option>
+                <option value="Pop">Pop</option>
+                <option value="Country">Country</option>
+                <option value="Hip Hop">Hip Hop</option>
+            </select>
+
+            <select id="periodoFilter" class="p-2 border rounded">
+                <option value="">Todos Períodos</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+            </select>
+
+            <select id="artistaFilter" class="p-2 border rounded">
+                <option value="">Todos Artistas</option>
+                <option value="Miley Cyrus">Miley Cyrus</option>
+                <option value="Morgan Wallen">Morgan Wallen</option>
+                <option value="Taylor Swift">Taylor Swift</option>
+            </select>
+        </div>
+
+        <!-- Botão de Filtro Adicionado AQUI -->
+        <div class="text-center mb-4">
+            <button id="aplicarFiltro" class="bg-green-500 text-white px-4 py-2 rounded">
+                Aplicar Filtros
+            </button>
+        </div>
+
+        <div class="grid grid-cols-2 gap-6">
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <h2 class="text-xl font-semibold mb-4">Top 5 Músicas por Streams</h2>
+                <canvas id="topMusicasChart"></canvas>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <h2 class="text-xl font-semibold mb-4">Distribuição de Gêneros</h2>
+                <canvas id="generosChart"></canvas>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <h2 class="text-xl font-semibold mb-4">Streams Mensais Comparativo</h2>
+                <canvas id="streamsTempoChart"></canvas>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <h2 class="text-xl font-semibold mb-4">Streams vs Dançabilidade</h2>
+                <canvas id="streamssDancabilidadeChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Nova Seção de Insights -->
+        <div class="mt-8 bg-blue-50 p-6 rounded-lg">
+            <h3 class="text-2xl font-bold mb-4 text-blue-700">🔍 Insights Estratégicos</h3>
+            <div id="insightsContainer" class="grid grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded shadow">
+                    <h4 class="font-semibold text-lg mb-2">Tendência Geral</h4>
+                    <p id="tendenciaGeral" class="text-gray-600"></p>
+                </div>
+                <div class="bg-white p-4 rounded shadow">
+                    <h4 class="font-semibold text-lg mb-2">Gênero Dominante</h4>
+                    <p id="generoDominante" class="text-gray-600"></p>
+                </div>
+                <div class="bg-white p-4 rounded shadow">
+                    <h4 class="font-semibold text-lg mb-2">Crescimento de Streams</h4>
+                    <p id="crescimentoStreams" class="text-gray-600"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-6 text-center">
+            <button id="exportarDados" class="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 transition">
+                🗂️ Exportar Dados
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Dados completos (expandidos)
+        const dadosCompletos = {
+            todasMusicas: [
+                { nome: 'Flowers', artista: 'Miley Cyrus', genero: 'Pop', streams: 1200, dancabilidade: 82, ano: 2023 },
+                { nome: 'Last Night', artista: 'Morgan Wallen', genero: 'Country', streams: 950, dancabilidade: 65, ano: 2023 },
+                { nome: 'Anti-Hero', artista: 'Taylor Swift', genero: 'Pop', streams: 850, dancabilidade: 80, ano: 2022 },
+                { nome: 'Rich Flex', artista: 'Drake', genero: 'Hip Hop', streams: 820, dancabilidade: 85, ano: 2022 },
+                { nome: 'As It Was', artista: 'Harry Styles', genero: 'Pop', streams: 780, dancabilidade: 75, ano: 2022 }
+            ]
+        };
+
+        // Variáveis globais para os gráficos
+        let topMusicasChart, generosChart, streamsTempoChart, streamsDancabilidadeChart;
+
+        // Função para filtrar dados com mais opções
+        function filtrarDados() {
+            const generoSelecionado = document.getElementById('generoFilter').value;
+            const periodoSelecionado = document.getElementById('periodoFilter').value;
+            const artistaSelecionado = document.getElementById('artistaFilter').value;
+
+            const dadosFiltrados = dadosCompletos.todasMusicas.filter(musica => 
+                (generoSelecionado === '' || musica.genero === generoSelecionado) &&
+                (periodoSelecionado === '' || musica.ano.toString() === periodoSelecionado) &&
+                (artistaSelecionado === '' || musica.artista === artistaSelecionado)
+            );
+
+            atualizarGraficos(dadosFiltrados);
+            gerarInsights(dadosFiltrados);
+        }
+
+        // Função para atualizar gráficos
+        function atualizarGraficos(dados) {
+            // Top Músicas
+            topMusicasChart.data.labels = dados.map(m => m.nome);
+            topMusicasChart.data.datasets[0].data = dados.map(m => m.streams);
+            topMusicasChart.update();
+
+            // Gêneros
+            const generosAgrupados = dados.reduce((acc, musica) => {
+                acc[musica.genero] = (acc[musica.genero] || 0) + 1;
+                return acc;
+            }, {});
+
+            generosChart.data.labels = Object.keys(generosAgrupados);
+            generosChart.data.datasets[0].data = Object.values(generosAgrupados);
+            generosChart.update();
+
+            // Streams Tempo (simplificado)
+            streamsTempoChart.data.labels = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'];
+            streamsTempoChart.data.datasets[0].data = dados.map(m => m.streams);
+            streamsTempoChart.update();
+
+            // Streams vs Dançabilidade
+            streamsDancabilidadeChart.data.labels = dados.map(m => m.nome);
+            streamsDancabilidadeChart.data.datasets[0].data = dados.map(m => m.streams);
+            streamsDancabilidadeChart.data.datasets[1].data = dados.map(m => m.dancabilidade);
+            streamsDancabilidadeChart.update();
+        }
+
+        // Função para gerar insights estratégicos
+        function gerarInsights(dados) {
+            const totalStreams = dados.reduce((sum, musica) => sum + musica.streams, 0);
+            const generosContagem = dados.reduce((acc, musica) => {
+                acc[musica.genero] = (acc[musica.genero] || 0) + 1;
+                return acc;
+            }, {});
+
+            const generoDominante = Object.keys(generosContagem).reduce((a, b) => 
+                generosContagem[a] > generosContagem[b] ? a : b
+            );
+
+            document.getElementById('tendenciaGeral').textContent = 
+                `Total de Streams: ${totalStreams} milhões`;
+            
+            document.getElementById('generoDominante').textContent = 
+                `Gênero Líder: ${generoDominante}`;
+            
+            document.getElementById('crescimentoStreams').textContent = 
+                `Variação de Streams: +${(totalStreams / dadosCompletos.todasMusicas.length).toFixed(2)}%`;
+        }
+
+        // Função para exportar dados
+        function exportarDados() {
+            const dadosCSV = dadosCompletos.todasMusicas.map(musica => 
+                `${musica.nome},${musica.artista},${musica.genero},${musica.streams},${musica.dancabilidade},${musica.ano}`
+            ).join('\n');
+            
+            const blob = new Blob([`Nome,Artista,Gênero,Streams,Dançabilidade,Ano\n${dadosCSV}`], { type: 'text/csv' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = 'dados_spotify_analytics.csv';
+            link.click();
+        }
+
+        // Inicialização dos gráficos
+        document.addEventListener('DOMContentLoaded', () => {
+            // Verificação de existência dos elementos
+            const aplicarFiltroBtn = document.getElementById('aplicarFiltro');
+            const exportarDadosBtn = document.getElementById('exportarDados');
+
+            // Inicialização dos gráficos
+            topMusicasChart = new Chart(document.getElementById('topMusicasChart'), {
+                type: 'bar',
+                data: {
+                    labels: dadosCompletos.todasMusicas.map(m => m.nome),
+                    datasets: [{
+                        label: 'Streams (milhões)',
+                        data: dadosCompletos.todasMusicas.map(m => m.streams),
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)'
+                    }]
+                }
+            });
+
+            generosChart = new Chart(document.getElementById('generosChart'), {
+                type: 'pie',
+                data: {
+                    labels: ['Pop', 'Country', 'Hip Hop'],
+                    datasets: [{
+                        data: [3, 1, 1],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 206, 86, 0.6)'
+                        ]
+                    }]
+                }
+            });
+
+            streamsTempoChart = new Chart(document.getElementById('streamsTempoChart'), {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+                    datasets: [{
+                        label: 'Streams (milhões)',
+                        data: dadosCompletos.todasMusicas.map(m => m.streams),
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)'
+                    }]
+                }
+            });
+
+            streamsDancabilidadeChart = new Chart(document.getElementById('streamssDancabilidadeChart'), {
+                type: 'bar',
+                data: {
+                    labels: dadosCompletos.todasMusicas.map(m => m.nome),
+                    datasets: [
+                        {
+                            label: 'Streams (milhões)',
+                            data: dadosCompletos.todasMusicas.map(m => m.streams),
+                            backgroundColor: 'rgba(75, 192, 192, 0.6)'
+                        },
+                        {
+                            label: 'Dançabilidade',
+                            data: dadosCompletos.todasMusicas.map(m => m.dancabilidade),
+                            type: 'line',
+                            borderColor: 'rgba(255, 99, 132, 1)'
+                        }
+                    ]
+                }
+            });
+
+            // Adicionar eventos com verificação
+            if (aplicarFiltroBtn) {
+                aplicarFiltroBtn.addEventListener('click', filtrarDados);
+            } else {
+                console.error('Botão de filtro não encontrado');
+            }
+
+            if (exportarDadosBtn) {
+                exportarDadosBtn.addEventListener('click', exportarDados);
+            } else {
+                console.error('Botão de exportação não encontrado');
+            }
+
+            // Gerar insights iniciais
+            gerarInsights(dadosCompletos.todasMusicas);
+        });
+    </script>
+</body>
+</html>
