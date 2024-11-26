@@ -119,105 +119,226 @@ const servers = [
             }
           ]
         },
-       
-       
-        {
-          id: 2,
-          name: '# jogos',
-          serverImage: 'img/teste1.jpg',
-          messages: [
-            {
-              author: 'User 1',
-              text: 'Quem quer jogar Minecraft?'
-            },
-            {
-              author: 'User 4',
-              text: 'Eu quero! Vamos marcar uma partida.'
-            }
-          ]
-        },
-        {
-          id: 3,
-          name: '# música',
-          messages: [
-            {
-              author: 'User 2',
-              text: 'Alguém tem uma boa playlist de rock?'
-            },
-            {
-              author: 'User 3',
-              text: 'Eu tenho uma excelente, posso compartilhar.'
-            }
-          ]
-    },
+      
+
+
+
     {
       id: 2,
-      name: 'Servidor 2',
-      serverImage: 'img/teste2.jpg',
+      name: 'Empreendedorismo Tecnologico',
+      serverImage: '../empreendedorismo/imgEmpreendedorismo/logoRPGHub.png',
       channels: [
         {
           id: 1,
-          name: '# geral',
+              name: '# 📱 geral',
+              messages: [
+                {
+                  author: 'Sistema',
+                  text: 'Bem-vindo ao servidor de Empreendedorismo Tecnologico! Aqui você encontrará uma criação de uma startup de RPG.'
+                },
+                  {
+                    author: 'Sistema',
+                    text: 'Bem-vindo ao servidor! Confira o código em https://github.com/AkuBaxi/compensacao_ausencia/tree/main/empreendedorismo'
+                  }                  
+              ]
+        },
+        {
+          id: 2,
+          name: '# 🎲 O que é?',
           messages: [
             {
-              author: 'User 5',
-              text: 'Oi, alguém pode me ajudar com uma dúvida?'
-            },
-            {
-              author: 'User 6',
-              text: 'Claro, pode perguntar.'
+              author: 'Sistema',
+              text: 'A RPG Hub é uma plataforma integrada que revoluciona a experiência de jogadores e mestres de RPG, oferecendo ferramentas intuitivas para criação, organização e personalização de campanhas.'
             }
           ]
         },
         {
-          id: 2,
-          name: '# videos',
-          messages: [
+          id:3,
+          name: '# ⚠ Problema Real e Solução',
+         messages:[
+          {
+            author: 'Sistema',
+             text:'Jogadores e mestres de RPG enfrentam dificuldades para organizar campanhas, criar mapas e fichas personalizadas, e conectar grupos de forma eficiente. \n Recursos online existentes são fragmentados ou complexos para iniciantes. \n Falta de integração entre ferramentas existentes aumenta custos e tempo de preparação. \n A experiência de jogo é prejudicada por problemas de organização e comunicação.'
+          },
+          {
+            author: 'Sistema',
+            text: 'A RPG Hub oferece soluções para esses problemas, incluindo: \n • Ferramentas de criação de campanhas e mapas personalizados \n• Integração de recursos online para facilitar a organização e comunicação \n• Plataforma de gerenciamento de grupos e campanhas \n • Ferramentas de personalização de fichas e recursos de jogo'
+            }
+         ]
+        },
+        {
+          id: 4,
+          name: '# 👥 público-alvo',
+          messages:[
             {
-              author: 'User 5',
-              text: 'Vocês viram o novo vídeo do YouTuber?'
-            },
-            {
-              author: 'User 7',
-              text: 'Sim, muito legal! Você gostou?'
+              author:'Sistema',
+              text: 'A RPG Hub é projetada para atender a uma ampla gama de públicos, incluindo: \n • Jogadores de RPG \n • Mestres de RPG \n • Criadores de conteúdo \n • Organizadores de eventos \n • Fãs de RPG \n • Jogadores Iniciantes \n • Jogadores experientes \n • Criadores de RPG'
             }
           ]
-        }
+          },
+          {
+            id: 5,
+            name: '# 🏆 Proposta de Valor',
+            messages: [
+              {
+                author: 'Sistema',
+                text:'Proposta de Valor \n • Plataforma all-in-one para RPG, \n • Interface intuitiva e moderna, \n • Suporte multiplataforma (PC, Mobile, Tablet) \n • Integração com sistemas populares \n • Recursos de comunidade e social '
+                }
+              ]
+            },
+            {
+              id: 6,
+              name: '# 🧾 Análise Financeira',
+              messages: [
+                {
+                  author: ' Receitas ',
+                  text:'• Assinaturas Premium (5000 usuários x $7.99 x 12 meses) = $479,400 \n • Marketplace (30% comissão sobre $200,000) = $60,000 \n • Parcerias e Anúncios = $40,000 \n • Total Receitas: $579,400'
+                  },
+                  {
+                    author: ' Custos ',
+                    text: ' • Desenvolvimento e Manutenção = $200,000 \n • Marketing e Aquisição = $100,000 \n • Infraestrutura e Servidores = $50,000 \n  • Equipe de Suporte = $80,000\n • Custos Administrativos = $40,000 \n • Total Custos: $470,000 \n '
+                    },
+                    {
+                      author: 'Lucro',
+                      text: 'Lucro Projetado Ano 1: $109,400'
+                      }
+
+                ]
+              }
+
+
+
+
       ]
     },
+
+
+
+
     {
       id: 3,
-      name: 'Servidor 3',
+      name: 'Ciência de Dados',
       serverImage: 'img/teste1.jpg',
       channels: [
         {
           id: 1,
-          name: '# geral',
+          name: '# 📱 geral',
           messages: [
             {
-              author: 'User 8',
-              text: 'Alguém precisa de ajuda com algo?'
+              author: 'Sistema',
+              text: 'Bem-vindo ao servidor de Análise de Design! Aqui você encontrará uma análise detalhada sobre o dados coletados do Spotify'
+            },
+              {
+                author: 'Sistema',
+                text: 'Bem-vindo ao servidor! Confira o código em https://github.com/AkuBaxi/compensacao_ausencia/tree/main/cienciaDados'
+              }                  
+          ]
+        },
+        {
+          id: 2,
+          name: '# 🎲 O que é?',
+          messages: [
+            {
+              author: '',
+              text: 'A ciência de dados e a coleta de dados existem para transformar informações brutas em insights valiosos.'
             },
             {
-              author: 'User 9',
-              text: 'Eu tenho uma dúvida sobre o produto, pode me ajudar?'
+              author: '',
+              text: ' A coleta de dados permite reunir informações de diversas fontes, enquanto a ciência de dados analisa, processa e interpreta esses dados usando técnicas estatísticas e computacionais. '
+            },
+            {
+              author: '',
+              text: ' O objetivo é tomar decisões mais informadas, prever tendências, resolver problemas complexos e impulsionar a inovação em áreas como negócios, saúde, tecnologia e pesquisa científica.'
             }
           ]
         },
         {
           id: 2,
-          name: '# suporte',
+          name: '#🧾 Metodologia',
           messages: [
             {
-              author: 'User 8',
-              text: 'Boa tarde, em que posso ajudar?'
+              author: '',
+              text: 'O estudo utilizou um dashboard interativo para análise de dados musicais baseados em métricas do Spotify. '
             },
             {
-              author: 'User 9',
-              text: 'Tenho um problema com minha conta, pode me orientar?'
+              author: '',
+              text: ' A metodologia incluiu a coleta de informações como streams, dançabilidade, gênero musical, e artista, com filtros por período e categoria. '
+            },
+            {
+              author: '',
+              text: ' A visualização foi feita por gráficos (barras, pizza e linhas) para identificar padrões e tendências.'
+            },
+            {
+              author: '📊 Gráfico de Barras',
+              text: 'img:img_dados/barras.png'
+            },
+            {
+              author: '🍕 Gráfico de Pizza',
+              text: 'img:img_dados/pizza.png'
+            },
+            {
+              author: '📈 Gráfico Linhas e Barras',
+              text: 'img:img_dados/linhas_barras.png'
             }
           ]
-        }
+        },
+        
+      ]
+    },
+
+
+    {
+      id: 4,
+      name: 'Ética e Direito Digital',
+      serverImage: 'img/teste1.jpg',
+      channels: [
+        {
+          id: 1,
+          name: '# 📱 geral',
+          messages: [
+            {
+              author: 'Sistema',
+              text: 'Bem-vindo ao servidor de Ética e Direito Digital! Aqui você encontrará uma campanha de conscientização sobre segurança digital para adolescentes.'
+            },
+              {
+                author: 'Sistema',
+                text: 'Bem-vindo ao servidor! Confira o código em https://github.com/AkuBaxi/compensacao_ausencia/tree/main/etica'
+              }                  
+          ]
+        },
+        {
+          id: 2,
+          name: '# ❗ Objetivo',
+          messages: [
+            {
+              author: '',
+              text: 'Educar sobre riscos digitais'
+            },
+            {
+              author: '',
+              text: ' Promover conscientização sobre privacidade online '
+            },
+            {
+              author: '',
+              text: ' Oferecer recursos práticos de segurança digital'
+            }
+          ]
+        },
+        {
+          id: 2,
+          name: '#🧾 Recursos e Funcionalidades',
+          messages: [
+            {
+              author: '',
+              text: 'Seção de Temas Interativos. \n Quiz de Segurança Digital. \n Links para recursos de apoio'
+            },
+            {
+              author: '',
+              text: ' Cards interativos sobre temas digitais. \n Quiz educativo. \n  Design responsivo. \n Cores e estilo modernos.'
+            }
+          ]
+        },
+        
       ]
     }
   ];
@@ -305,9 +426,25 @@ const servers = [
                 modalImage.src = imgSrc;
                 imageModal.classList.add('active');
             });
+            
 
             textElement.appendChild(imgElement);
-        } else {
+        }
+        else if (currentServerId === 3 && channel.id === 2 && message.text.startsWith('img:')) {
+          const imgSrc = message.text.replace('img:', '').trim();
+          const imgElement = document.createElement('img');
+          imgElement.src = imgSrc;
+          imgElement.alt = 'Imagem do usuário';
+          imgElement.style.maxWidth = '100%';
+        
+          imgElement.addEventListener('click', () => {
+              modalImage.src = imgSrc;
+              imageModal.classList.add('active');
+          });
+        
+          textElement.appendChild(imgElement);
+        }
+         else {
             textElement.textContent = message.text; 
         }
 
